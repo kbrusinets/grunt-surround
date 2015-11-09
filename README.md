@@ -73,15 +73,17 @@ If a match is found, your content will not be modified to avoid repetitions.
 
 ```js
 grunt.initConfig({
-  wraps: {
-    options: {
-      prepend: ';(function() {',
-      append: '})()'
-    },
-    files: [{
-      src: 'src/source.js',
-      dest: 'dest/destination.js'
-    }]
+  surround: {
+    wraps: {
+      options: {
+        prepend: ';(function() {',
+        append: '})()'
+      },
+      files: [{
+        src: 'src/source.js',
+        dest: 'dest/destination.js'
+      }]
+    }
   }
 })
 ```
