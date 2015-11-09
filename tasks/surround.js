@@ -37,30 +37,32 @@ module.exports = function (grunt) {
 
       this.files.forEach(function (f) {
 
-        var file = f.src[0],
-          content = grunt.file.read(file);
+        f.src.forEach(function (file) {
 
-        if (opts.ignoreRecurrence) {
-          if (_.startsWith(content, prepend)) {
-            prepend = '';
+          var content = grunt.file.read(file);
+  
+          if (opts.ignoreRecurrence) {
+            if (_.startsWith(content, prepend)) {
+              prepend = '';
+            }
+  
+            if (_.endsWith(content, append)) {
+              append = '';
+            }
           }
-
-          if (_.endsWith(content, append)) {
-            append = '';
+  
+          if (!opts.overwrite && !f.dest) {
+            grunt.log.writeln(
+              'The option "overwrite" is set but no destination file is defined.'
+            );
+            return;
           }
-        }
-
-        if (!opts.overwrite && !f.dest) {
-          grunt.log.writeln(
-            'The option "overwrite" is set but no destination file is defined.'
+  
+          grunt.file.write(
+            opts.overwrite ? file : f.dest,
+            [prepend, opts.linefeed, content, opts.linefeed, append].join('')
           );
-          return;
-        }
-
-        grunt.file.write(
-          opts.overwrite ? file : f.dest,
-          [prepend, opts.linefeed, content, opts.linefeed, append].join('')
-        );
+        });
       });
     }
   );
