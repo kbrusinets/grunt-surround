@@ -29,6 +29,7 @@ module.exports = function (grunt) {
           prepend: '',
           append: '',
           overwrite: false,
+		  encoding: 'utf8',
           linefeed: grunt.util.linefeed,
           ignoreRecurrence: false
         }),
@@ -36,10 +37,9 @@ module.exports = function (grunt) {
         append = isFunction(opts.append) ? opts.append() : opts.append;
 
       this.files.forEach(function (f) {
-
         f.src.forEach(function (file) {
 
-          var content = grunt.file.read(file);
+          var content = grunt.file.read(file, {encoding: opts.encoding});
   
           if (opts.ignoreRecurrence) {
             if (_.startsWith(content, prepend)) {
@@ -60,7 +60,8 @@ module.exports = function (grunt) {
   
           grunt.file.write(
             opts.overwrite ? file : f.dest,
-            [prepend, opts.linefeed, content, opts.linefeed, append].join('')
+            [prepend, opts.linefeed, content, opts.linefeed, append].join(''),
+			{encoding: opts.encoding}
           );
         });
       });
