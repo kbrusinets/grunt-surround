@@ -1,22 +1,22 @@
 {
   "name": "grunt-surround",
   "description": "Surround the content of a file with another content.",
-  "version": "0.1.0",
-  "homepage": "https://github.com/preventdefault/grunt-surround",
+  "version": "0.1.1",
+  "homepage": "https://github.com/kbrusinets/grunt-surround",
   "author": {
     "name": "Mario Bartlack",
     "url": "http://www.bytepark.de"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/preventdefault/grunt-surround.git"
+    "url": "https://github.com/kbrusinets/grunt-surround"
   },
   "bugs": {
-    "url": "https://github.com/preventdefault/grunt-surround/issues"
+    "url": "https://github.com/kbrusinets/grunt-surround/issues"
   },
   "licenses": [{
     "type": "MIT",
-    "url": "https://github.com/preventdefault/grunt-surround/blob/master/LICENSE-MIT"
+    "url": "https://github.com/kbrusinets/grunt-surround/blob/master/LICENSE-MIT"
   }],
   "main": "Gruntfile.js",
   "engines": {
@@ -33,6 +33,9 @@
   },
   "peerDependencies": {
     "grunt": "~0.4.1"
+  },
+  "publishConfig": {
+	"registry":"http://npm.billing.ru"	
   },
   "keywords": [
     "gruntplugin"
